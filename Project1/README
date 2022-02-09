@@ -1,0 +1,50 @@
+README FILE
+
+Name: Revanth Kumar Yamani
+UID: 104971055 
+Email: revanthky@ucla.edu
+
+
+
+Code Referenced: from Discussion 1B, adapted the code from TA Zhiyi Zhang. 
+
+
+Code for Reading in a file's contents into a string: adapted from this post found on stack overflow : 
+https://stackoverflow.com/questions/2602013/read-whole-ascii-file-into-c-stdstring
+
+
+
+
+The high level design of my server is very similar to that of the server code provided in discussion sections. 
+Essentially, the server functions by first creating and initializing a socket and allowing a maximum number of 10 connections. 
+The server connects by listening to port 8064, which is an arbitrary port number that I chose.
+If this port address is free and not in use,the connection is fully established. 
+The server reads any requests made to this socket, printing it out to the terminal before fulfilling it. 
+
+To actually complete the GET request made to the server, the server first parses the request for the specified file name.
+From this file name, the type of file is also parsed out in order to specify this correctly in the corresponding response.
+This is done by using C++ string parsing. Then, the file content is loaded into a C++ string, using the method from the
+stack overflow article link above. This is because it made it easy to find the file size to put into the response message, 
+as the C++ string with the file content's length would also be the file's size in byte. 
+
+
+The actual response Message is made by putting together C++ strings to match the format shown in Zhiyi Zhang's 
+slides. The first line contains the HTTP version, as well as status code (200 OK). The following lines in the header
+of the response are Content-Type, which is generated dynamically based on the type of the requested file, as well as the file
+size, which is also generated dynamically. Each of these lines is separated by a carriage return. After this, there are two carriage
+returns to signify the begining of the response body, which holds the actual file content. 
+The response allows the recipient client to know when the message actually ends based on the file size.
+
+
+The response is formatted to be the same as a normal HTTP Message in the browser would appear, so any requested files that are 
+in the correct directory would be loaded in the browser.
+
+
+The biggest difficulty for me was figuring out how to store the entire file content into a string, to add the content
+to a formatted HTTP response string that can then be written to the socket. I overcame this with the above article.
+Switching to using C++ also helped a lot in string parsing and formatting. 
+
+
+Another difficulty was ensuring that the response message was formatted correctly. I was able to get past this by just
+diligently debugging any errors that I encountered.
+
