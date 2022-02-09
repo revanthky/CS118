@@ -1,0 +1,41 @@
+#NAME: REVANTH YAMANI
+#UID: 104971055
+#EMAIL: revanthky@ucla.edu
+
+
+Client/Server Design: At a high level, I designed my code so that the server is continuously running and can accept a variable number of sequential
+client connections. When a client initiates a connection for the server, the host address and port number are specified for the connection. This 
+is where the server will be listening to accept connections. To first establish the connection, the initial steps are creating a socket with a specific
+port number, binding the socket to listen and accept connects, and then moving on. 
+Next, is the actual TCP protocols implemented. First, what was done is creating the 3 way handshake like in tcp. afte this, the client continuously sends
+data packets until the entire specified file is transmitted. On the other side, the server listens for and acks each of these packets in order. This will
+continue until the entire file is transmitted and saved in a new file.
+
+
+
+One of the biggest challenges I faced was in first reading in the file to transmit's contents. I first tried this with a string, but eventually had to use
+a c string to do so. 
+Another major challenge I faced was in making sure that the complete file transmitted correctly and kept the integrity of the file data. 
+I was trying to do this using C++ strings, but eventually had to switch to using memcpy and C strings to make this work.
+
+
+I was unable to implement a window or packet retransmissions due to time constraints, but was able to implement reliable file transfer for a 
+variety of file types. 
+
+
+
+
+
+
+
+
+
+Code referenced: 
+
+various stack overflow articles for debugging issues that I came across.
+
+TA Zhiyi Zhang's code demo from Discussion, used to establish the initial connection between a server and a client
+
+Man pages for code examples, specifically: the man page for getaddrinfo, to support the first argument passed into client. 
+
+
